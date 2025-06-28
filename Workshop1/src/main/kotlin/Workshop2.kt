@@ -56,6 +56,32 @@ fun main() {
     println("--------------------------------------------------")
 
 
+    //Workshp2.2
+    println("")
+    val Less1000=products
+        .filter { it.price < 1000 }
+        .map { it.name +" ราคา : "+ it.price }
+        .toString()
+
+
+    val middle=products
+        .filter { it.price > 1000 && it.price < 10000 }
+        .map { it.name + " ราคา : " + it.price }
+        .toString()
+
+    val more=products
+        .filter { it.price > 10000 }
+    .map { it.name + " ราคา : " + it.price }
+    .toString()
+
+    println("กลุ่มของสินค้าที่ราคาไม่เกิน 1,000 บาท \n $Less1000 " )
+    println("--------------------------------------------------")
+    println("กลุ่มของสินค้าที่ราคาอยู่ระหว่าง 1,000 - 9,999 บาท \n $middle " )
+    println("--------------------------------------------------")
+    println("กลุ่มของสินค้าราคา 10,000 ขึ้นไป \n $more " )
+    println("--------------------------------------------------")
+
+
     println("อภิปรายความแตกต่างระหว่าง List และ Sequence:")
     println("1. List Operations (วิธีที่ 1):")
     println("   - ทุกครั้งที่เรียกใช้ operation (เช่น filter, map) จะมีการสร้าง Collection (List) ใหม่ขึ้นมาเพื่อเก็บผลลัพธ์ของขั้นนั้นๆ")
