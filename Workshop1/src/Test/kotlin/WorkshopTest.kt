@@ -33,7 +33,7 @@ class WorkshopTest {
         val celsiusInput = 0.0
         val expectedFahrenheit = 32.0
 
-        assertEquals(expectedFahrenheit, celsiusToFahrenheit(celsiusInput))
+        assertEquals(expectedFahrenheit, celsiusToFahrenheit(celsiusInput),"0 องศาเซลเซียส ควรจะ 32 ฟาเรนไฮต์")
     }
 
     // celsius input: -10.0
@@ -43,7 +43,7 @@ class WorkshopTest {
         val celsiusInput = -10.0
         val expectedFahrenheit = 14.0
 
-        assertEquals(expectedFahrenheit, celsiusToFahrenheit(celsiusInput))
+        assertEquals(expectedFahrenheit, celsiusToFahrenheit(celsiusInput),"-10 องศาเซลเซียส ควรจะ 14 ฟาเรนไฮต์")
     }
 
     // test for kilometersToMiles function
@@ -55,7 +55,7 @@ class WorkshopTest {
         val expectedMiles = 0.621371
 
         val actualMiles = kilometersToMiles(kilometersInput)
-        assertEquals(expectedMiles, actualMiles, 0.001)
+        assertEquals(expectedMiles, actualMiles, 0.001,"1กิโลเมตรควรจะเท่ากับ0.621371")
     }
 
     // --- Tests for Workshop #1: Unit Converter End ---
