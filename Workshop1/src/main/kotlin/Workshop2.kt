@@ -2,17 +2,17 @@ package org.example
 
 // 1. กำหนด data class สำหรับเก็บข้อมูลสินค้า
 data class Product(val name: String, val price: Double, val category: String)
-
+val products =listOf<Product >(
+    Product  (name = "Laptop", price = 35000.0, category = "Electronics") ,
+    Product  (name = "Smartphone", price = 25000.0, category = "Electronics"),
+    Product  (name = "T-shirt", price = 450.0, category = "Apparel"),
+    Product  ( name = "Monitor", price = 7500.0, category = "Electronics"),
+    Product   (name = "Keyboard", price = 499.0, category = "Electronics"),
+    Product   ( name = "Jeans", price = 1200.0, category = "Apparel"),
+    Product  (name = "Headphones", price = 1800.0, category = "Electronics")
+)
 fun main() {
-    val products =listOf<Product >(
-        Product  (name = "Laptop", price = 35000.0, category = "Electronics") ,
-        Product  (name = "Smartphone", price = 25000.0, category = "Electronics"),
-        Product  (name = "T-shirt", price = 450.0, category = "Apparel"),
-        Product  ( name = "Monitor", price = 7500.0, category = "Electronics"),
-        Product   (name = "Keyboard", price = 499.0, category = "Electronics"),
-        Product   ( name = "Jeans", price = 1200.0, category = "Apparel"),
-        Product  (name = "Headphones", price = 1800.0, category = "Electronics")
-    )
+
     // 2. สร้างรายการสินค้าตัวอย่าง (List<Product>)
     // สินค้า name = "Laptop", price = 35000.0, category = "Electronics"
     // สินค้า name = "Smartphone", price = 25000.0, category = "Electronics"
@@ -95,4 +95,15 @@ fun main() {
     println("   - เช่น: 'Laptop' จะถูก filter category -> filter price -> map price จากนั้น 'Smartphone' ถึงจะเริ่มทำกระบวนการเดียวกัน")
     println("   - จะไม่มีการสร้าง Collection กลางทาง ทำให้ประหยัดหน่วยความจำและเร็วกว่ามากสำหรับชุดข้อมูลขนาดใหญ่ เพราะทำงานกับข้อมูลทีละชิ้นและทำทุกขั้นตอนให้เสร็จในรอบเดียว")
     println("   - การคำนวณจะเกิดขึ้นเมื่อมี 'Terminal Operation' มาเรียกใช้เท่านั้น (ในที่นี้คือ .sum())")
+
+
+}
+
+fun testcategorymore500(product: List<Product>): Double {
+    return product.filter {it.category == "Electronics" && it.price>500 }
+        .sumOf { it.price }
+}
+
+fun countProductsByCategory(products: List<Product>, category: String): Int {
+    return products.count { it.category == category  && it.price > 500 }
 }
