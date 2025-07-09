@@ -12,6 +12,7 @@ data class Task(val id: Int, val content: String , val isDone: Boolean)
 @Serializable
 data class TaskRequest( val content: String , val isDone: Boolean)
 
+
 object taskRepository{
      val tasks = mutableListOf<Task>(
          Task(id = 1, content = "Learn Ktor", isDone = true),
@@ -54,30 +55,7 @@ fun Application.configureRouting() {
                         call.respondText("Task not found", status = HttpStatusCode.NotFound)
                 }
 
-                post {
-                    val request = call.receive<TaskRequest>()
-                    val newId = (taskRepository.tasks.maxByOrNull { it.id }?.id ?: 0) + 1
-                    val task = Task(id = newId, content = request.content, isDone = request.isDone)
-                    taskRepository.tasks.add(task)
-                    println("Task list now: ${taskRepository.tasks}")
-                    call.respondText("Created", status = HttpStatusCode.Created)
-                }
-                put("/{id}") {
-                    val id = call.parameters["id"]!!.toIntOrNull()
-                    if (id == null) {
-                        call.respondText("Invalid ID", status = HttpStatusCode.BadRequest)
-                        return@put
-                    }
-                    val request = call.receive<TaskRequest>()
-                    val index = taskRepository.tasks.indexOfFirst { it.id == id }
-                    if (index != -1) {
-                        val updatedTask = Task(id = id!!, content = request.content, isDone = request.isDone)
-                        taskRepository.tasks[index] = updatedTask
-                        call.respondText("Updated", status = HttpStatusCode.OK)
-                    } else
-                        call.respondText("Task not found", status = HttpStatusCode.NotFound)
 
-                }
                 delete("/{id}") {
                     val id = call.parameters["id"]!!.toIntOrNull()
                     if (id == null) {
