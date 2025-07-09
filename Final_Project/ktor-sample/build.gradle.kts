@@ -17,16 +17,28 @@ application {
 repositories {
     mavenCentral()
 }
+val junit_version = "5.10.2"
 
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-netty")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("io.ktor:ktor-server-core")
     implementation("io.ktor:ktor-server-config-yaml")
-    testImplementation("io.ktor:ktor-server-test-host")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
 
+    // ✅ JUnit 5 (สำคัญ)
+    testImplementation("org.junit.jupiter:junit-jupiter:$junit_version")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // ✅ Kotlin Test
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    // ✅ (Optional) สำหรับ Ktor testing
+    testImplementation("io.ktor:ktor-server-test-host")
+}
+
+
+tasks.test {
+    useJUnitPlatform()
 }
